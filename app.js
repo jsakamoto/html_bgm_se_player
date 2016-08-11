@@ -1,6 +1,9 @@
 // 現在再生中の BGM の audio 要素を保持する変数
 var currentPlayingBGM = null;
 
+// BGM の再生音量 (0~1)
+var masterVolume = 1;
+
 // BGMについて、ボタン要素のIDと、そのボタンをクリックしたときに鳴らすBGM音源との対応を定義
 var bgmDefinitions = [
     { id: "BGM1", src: "assets/BGM/BGM1.mp3" },
@@ -32,7 +35,7 @@ bgmDefinitions.forEach(function (bgmDefinition) {
 
         // 曲の先頭から再生開始し、現在再生中BGMのaudio要素をマーク
         audio.currentTime = 0;
-        audio.volume = 1;
+        audio.volume = masterVolume;
         audio.play();
         currentPlayingBGM = audio;
     });
@@ -56,6 +59,24 @@ document.getElementById("FO").addEventListener("click", function () {
         }
     }, 500);
 });
+
+// 音量について、ボタン要素のIDと、そのボタンをクリックしたときに設定する音量(0~1)との対応を定義
+var volumeDefinitions = [
+    { id: "Volume1", volume: 0.4 },
+    { id: "Volume2", volume: 0.7 },
+    { id: "Volume3", volume: 1 },
+];
+
+// 先の定義に従って、音量ボタンクリック時に対応する音量設定動作を配線
+volumeDefinitions.forEach(function (volumeDefinition) {
+    document.getElementById(volumeDefinition.id).addEventListener("click", function () {
+        masterVolume = volumeDefinition.volume;
+        if (currentPlayingBGM != null && timerid == 0) {
+            currentPlayingBGM.volume = volumeDefinition.volume;
+        }
+    });
+});
+
 
 // SE(効果音)について、ボタン要素のIDと、そのボタンをクリックしたときに鳴らすSE音源との対応を定義
 var seDefinitions = [
