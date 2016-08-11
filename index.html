@@ -1,18 +1,41 @@
 <html>
 
-<body>
-	<button id="BGM1">BGM1</button>
-	<button id="BGM2">BGM2</button>
-	<button id="BGM3">BGM3</button>
+<head>
+	<meta name="viewport" content="width=device-width" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+</head>
 
-	<button id="Volume1">Volume1</button>
-	<button id="Volume2">Volume2</button>
-	<button id="Volume3">Volume3</button>
-	
-	<button id="SE1">SE1</button>
-	<button id="SE2">SE2</button>
-	<button id="SE3">SE3</button>
-	<button id="FO">FO</button>
+<body>
+	<div class="bgm-group">
+
+		<div class="bgm-box">
+			<div class="caption">BGM</div>
+			<button id="BGM1" class="bgm-btn">BGM1</button>
+			<button id="BGM2" class="bgm-btn">BGM2</button>
+			<button id="BGM3" class="bgm-btn">BGM3</button>
+		</div>
+
+		<div class="volume-box">
+			<div class="caption">Volume</div>
+			<button id="Volume3" class="volume-btn">Volume3</button>
+			<button id="Volume2" class="volume-btn">Volume2</button>
+			<button id="Volume1" class="volume-btn">Volume1</button>
+		</div>
+
+		<div class="control-box">
+			<button id="FO">Fade Out</button>
+		</div>
+	</div>
+
+	<div class="se-group">
+		<div class="se-box">
+			<div class="caption">Sound Effects</div>
+			<button id="SE1" class="se-btn">SE1</button>
+			<button id="SE2" class="se-btn">SE2</button>
+			<button id="SE3" class="se-btn">SE3</button>
+		</div>
+	</div>
+
 	<script src="app.js"></script>
 </body>
 
