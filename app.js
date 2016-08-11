@@ -21,7 +21,7 @@ var bgm = new Audio();
 bgm.src = "assets/BGM/BGM1.mp3";
 bgm.loop = true;
 bgm.volume = 1;
-document.getElementById("BGM").addEventListener("click", function () {
+document.getElementById("BGM1").addEventListener("click", function () {
     bgm.play();
 });
 
