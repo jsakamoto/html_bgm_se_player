@@ -18,3 +18,25 @@
 - [ ] 全ての操作が行いやすい (タップしやすい) こと
     - とりあえずボタンを並べただけ
     - 要検討
+
+## サンプルで使用している音源
+
+サンプルで使用している音源は下記のサイトの著作物となっております。
+
+### BGM音源： 01SoundEarth
+
+フリー素材＞ループ＞ファミコン風8bit
+→ [https://01earth.net/sound/material/loop/8bit/](https://01earth.net/sound/material/loop/8bit/)
+
+- lo_025.mp3 → BGM1.mp3
+- lo_027.mp3 → BGM2.mp3
+- lo_029.mp3 → BGM3.mp3
+
+### SE音源： 効果音ラボ
+
+戦闘[1] ファンタジー・格闘
+→ [http://soundeffect-lab.info/sound/battle/](http://soundeffect-lab.info/sound/battle/)
+
+- magic-flame2.mp3 → SE1.mp3
+- magic-poison1.mp3 → SE2.mp3
+- magic-status-cure1.mp3 → SE3.mp3
