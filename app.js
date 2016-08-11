@@ -4,6 +4,9 @@ var currentPlayingBGM = null;
 // BGM の再生音量 (0~1)
 var masterVolume = 1;
 
+// 音源ファイルの先行読み込みを要求する audio 要素をストックする
+var preloadRequests = [];
+
 // BGMについて、ボタン要素のIDと、そのボタンをクリックしたときに鳴らすBGM音源との対応を定義
 var bgmDefinitions = [
     { id: "BGM1", src: "assets/BGM/BGM1.mp3" },
@@ -11,13 +14,15 @@ var bgmDefinitions = [
     { id: "BGM3", src: "assets/BGM/BGM3.mp3" },
 ];
 
-// 先の定義に従って、SEボタンクリック時に対応する効果音を鳴らす動作を配線
+// 先の定義に従って、BGMボタンクリック時に対応する効果音を鳴らす動作を配線
 bgmDefinitions.forEach(function (bgmDefinition) {
     var audio = new Audio();
     audio.src = bgmDefinition.src;
-    audio.loop = true;
+    preloadRequests.push(audio);
 
     document.getElementById(bgmDefinition.id).addEventListener("click", function () {
+        preloadAudio();
+
         // このBGMが現在再生中で、かつ、フェードアウト途中でもなければ、繰り返しボタンクリックされても何もしない
         if (currentPlayingBGM == audio && timerid == 0) return;
 
@@ -36,6 +41,7 @@ bgmDefinitions.forEach(function (bgmDefinition) {
         // 曲の先頭から再生開始し、現在再生中BGMのaudio要素をマーク
         audio.currentTime = 0;
         audio.volume = masterVolume;
+        audio.loop = true;
         audio.play();
         currentPlayingBGM = audio;
     });
@@ -77,7 +83,6 @@ volumeDefinitions.forEach(function (volumeDefinition) {
     });
 });
 
-
 // SE(効果音)について、ボタン要素のIDと、そのボタンをクリックしたときに鳴らすSE音源との対応を定義
 var seDefinitions = [
     { id: "SE1", src: "assets/SE/SE1.mp3" },
@@ -89,11 +94,20 @@ var seDefinitions = [
 seDefinitions.forEach(function (seDefinition) {
     var audio = new Audio();
     audio.src = seDefinition.src;
-    audio.volume = 1;
+    preloadRequests.push(audio);
 
     document.getElementById(seDefinition.id).addEventListener("click", function () {
+        preloadAudio();
         audio.currentTime = 0;
+        audio.volume = 1;
         audio.play();
     });
 });
 
+function preloadAudio() {
+    while ((toPreload = preloadRequests.pop()) != null) {
+        toPreload.loop = false;
+        toPreload.volume = 0;
+        toPreload.play();
+    }
+}
