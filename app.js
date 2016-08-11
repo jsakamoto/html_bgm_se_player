@@ -68,11 +68,10 @@ var seDefinitions = [
 seDefinitions.forEach(function (seDefinition) {
     var audio = new Audio();
     audio.src = seDefinition.src;
+    audio.volume = 1;
 
     document.getElementById(seDefinition.id).addEventListener("click", function () {
-        if (audio.currentTime > 0) {
-            audio.currentTime = 0;
-        }
+        audio.currentTime = 0;
         audio.play();
     });
 });
